@@ -1,54 +1,51 @@
 #include "lists.h"
 
 /**
-* list_len - finds no. of elements ina linked list.
-* @h: pointer to linked list.
-*
-* Return: number of elements in linked list.
-*/
-size_t list_len(listint_t *h)
+ * reverse - Reverse a linked list.
+ * @head_medium: Head of the linked list.
+ * Return: void.
+ */
+void reverse(listint_t **head_medium)
 {
-	size_t  nodes = 0;
+	listint_t *current = *head_medium, *next = NULL, *prev = NULL;
 
-	if (h == NULL)
-		return (0);
-	while (h != NULL)
+	while (current != NULL)
 	{
-		nodes++;
-		h = h->next;
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
 	}
-	return (nodes);
+	*head_medium = prev;
 }
 
 /**
-* is_palindrome - checks if a singly linked list is a palindrome.
-* @head: double pointert to head of d-list.
-*
-* Return: 1 if palindrome, 0 otherwise.
-*/
+ * 
+ * is_palindrome - Check if a linked list is a palindrome.
+ * @head: Head of the linked list.
+ * Return: 1 if it is, 0 if doesn't.
+ *     
+ **/
 int is_palindrome(listint_t **head)
 {
-	int *nArr, i = 0, j = 0, len = 0;
-	listint_t *temp;
+	listint_t *first, *last, *medium, *current;
 
-	if (*head == NULL)
-		return (1);
-	temp = *head;
-	len = list_len(temp);
-	nArr = (int *)malloc(sizeof(int) * len);
-	if (nArr == NULL)
-		return (2);
-	temp = *head;
-	while (temp != NULL)
+	first = *head;
+	last = *head;
+	while (first != NULL && first->next != NULL)
 	{
-		nArr[j] = temp->n;
-		j++;
-		temp = temp->next;
+		first = first->next->next;
+		last = last->next;
 	}
-	for (i = 0, j = len - 1; i < j; i++, j--)
+	medium = last;
+	reverse(&medium);
+	current = *head;
+	while (medium != NULL)
 	{
-		if (nArr[i] != nArr[j])
+		if (medium->n != current->n)
 			return (0);
+		medium = medium->next;
+		current = current->next;
 	}
 	return (1);
 }
