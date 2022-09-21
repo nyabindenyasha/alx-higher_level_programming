@@ -1,50 +1,80 @@
-The ``5-text_indentation`` module
-======================
+The ``Text identation`` module
+===========================
 
 Using ``text_indentation``
--------------------
+----------------------
 
-Import module:
+First import ``print_square`` from the ``Print Square`` module:
 
-    >>> text_indentation = __import__('5-text_indentation').text_indentation
+    >>> text_indentation = __import__("5-text_indentation").text_indentation
 
-Test an add with only one argument:
+Now use it:
 
-    >>> text_indentation('               Hola')
-    Hola
-
-Test an add with only one argument:
-
-    >>> text_indentation('Hello               ')
-    Hello
-
-Test an add with only one argument:
-
-    >>> text_indentation('               This   :    is  a  .  test ?     ')
-    This:
+    >>> text_indentation('abc.def')
+    abc.
     <BLANKLINE>
-    is  a.
+    def
+
+    >>> text_indentation('abc.       def')
+    abc.
     <BLANKLINE>
-    test?
+    def
+
+    >>> text_indentation('abc      .        def.')
+    abc      .
     <BLANKLINE>
+    def.
+    
+    >>> text_indentation('abc..def')
+    abc.
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    def
 
-Test a comun sum:
+    >>> text_indentation('abc:def')
+    abc:
+    <BLANKLINE>
+    def
 
-    >>> text_indentation(648)
-    Traceback (most recent call last):
-        ...
-    TypeError: text must be a string
+    >>> text_indentation('abc:       def')
+    abc:
+    <BLANKLINE>
+    def
 
-Test whatever:
+    >>> text_indentation('abc      :        def.')
+    abc      :
+    <BLANKLINE>
+    def.
 
-    >>> text_indentation(None)
-    Traceback (most recent call last):
-        ...
-    TypeError: text must be a string
+    >>> text_indentation('abc:def.')
+    abc:
+    <BLANKLINE>
+    def.
 
-Tes passing a string as argument:
+    >>> text_indentation('abc.def?')
+    abc.
+    <BLANKLINE>
+    def?
 
-    >>> text_indentation(['hola', '?', 'Test'])
+    >>> text_indentation('abc?       def')
+    abc?
+    <BLANKLINE>
+    def
+
+    >>> text_indentation('abc      ?        def.')
+    abc      ?
+    <BLANKLINE>
+    def.
+
+    >>> text_indentation('abc?.def')
+    abc?
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    def
+
+    >>> text_indentation(5)
     Traceback (most recent call last):
         ...
     TypeError: text must be a string
