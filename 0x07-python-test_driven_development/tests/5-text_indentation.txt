@@ -1,0 +1,50 @@
+The ``5-text_indentation`` module
+======================
+
+Using ``text_indentation``
+-------------------
+
+Import module:
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Test an add with only one argument:
+
+    >>> text_indentation('               Hola')
+    Hola
+
+Test an add with only one argument:
+
+    >>> text_indentation('Hello               ')
+    Hello
+
+Test an add with only one argument:
+
+    >>> text_indentation('               This   :    is  a  .  test ?     ')
+    This:
+    <BLANKLINE>
+    is  a.
+    <BLANKLINE>
+    test?
+    <BLANKLINE>
+
+Test a comun sum:
+
+    >>> text_indentation(648)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Test whatever:
+
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+
+Tes passing a string as argument:
+
+    >>> text_indentation(['hola', '?', 'Test'])
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string

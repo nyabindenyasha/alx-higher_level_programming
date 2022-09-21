@@ -1,0 +1,64 @@
+The ``add_integer`` module
+======================
+
+Using ``add_integer``
+-------------------
+
+Import module:
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Test an add with only one argument:
+
+    >>> add_integer(2)
+    100
+
+Test a comun sum:
+
+    >>> add_integer(4, 8)
+    12
+
+Test whatever:
+
+    >>> add_integer(24, 846)
+    870
+
+Test whatever:
+
+    >>> add_integer(24.897983479, 846.9827495)
+    870
+
+Tes passing a string as argument:
+
+    >>> add_integer("Holberton", 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Tes passing a string as argument:
+
+    >>> add_integer(35673, "Holberton")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Tes passing a string as argument:
+
+    >>> add_integer(None, 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Tes passing a string as argument:
+
+    >>> add_integer(74, float('nan'))
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
+
+Tes passing a string as argument:
+
+    >>> add_integer(float('inf'), 5)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
