@@ -1,30 +1,43 @@
 #!/usr/bin/python3
 """
-This is the "2-matrix_divided" module.
-The 2-matrix_divided module supplies one function, matrix_divided(matrix, div).
+This module defines `matrix_divided`
+
+The function returns the matrix divided by div
 """
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements in the matrix by div"""
-    if type(matrix) is not list:
-        raise TypeError(
-            "matrix must be a matrix (list of lists) of integers/floats")
-    size = None
-    for l in matrix:
-        if type(l) is not list:
-            raise TypeError(
-                "matrix must be a matrix (list of lists) of integers/floats")
-        if size is None:
-            size = len(l)
-        elif size != len(l):
-            raise TypeError("Each row of the matrix must have the same size")
-        for i in l:
-            if type(i) is not int and type(i) is not float:
-                raise TypeError("matrix must be a matrix (list of lists) of \
-integers/floats")
-    if type(div) is not int and type(div) is not float:
-        raise TypeError("div must be a number")
-    if div == 0:
-        raise ZeroDivisionError("division by zero")
-    return [[round(i / div, 2) for i in l] for l in matrix]
+    """divide each element of a matrix by div
+
+    Args:
+        matrix (list): matrix to divide
+        div (int): divisor
+
+    Raises:
+        TypeError: div must be a number
+        TypeError: Each row of the matrix must have the same size
+        TypeError: matrix must be a matrix (list of lists) of integers/floats
+        ZeroDivisionError
+
+    Returns:
+        list: matrix divided by div
+    """
+
+    if not isinstance(div, (int, float)):
+        raise TypeError('div must be a number')
+
+    matrix_divided = [x[:] for x in matrix]
+    for line in matrix_divided:
+        if len(line) != len(matrix_divided[0]):
+            raise TypeError('Each row of the matrix must have the same size')
+
+        for element_index, element in enumerate(line):
+            if not isinstance(element, (int, float)):
+                raise TypeError(
+                    'matrix must be a matrix (list of lists)'
+                    ' of integers/floats'
+                )
+
+            line[element_index] = round(element/div, 2)
+
+    return matrix_divided
