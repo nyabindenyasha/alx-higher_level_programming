@@ -1,64 +1,87 @@
-The ``add_integer`` module
-======================
+The 0-add_integer test module.
+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 
-Using ``add_integer``
--------------------
+Using "add_integer"
+++++++++++++++++++++++++++++++++++++
 
-Import module:
+Import function from module:
 
-    >>> add_integer = __import__('0-add_integer').add_integer
+	>>> add_integer = __import__('0-add_integer').add_integer
 
-Test an add with only one argument:
+Test one int argument:
+	>>> add_integer(2)
+	100
 
-    >>> add_integer(2)
-    100
+Test one int argument and check default second:
+	>>> add_integer(0)
+	98
 
-Test a comun sum:
+Test one float:
+	>>> add_integer(166.7)
+	264
 
-    >>> add_integer(4, 8)
-    12
+Test one negative float:
+	>>> add_integer(-97.978)
+	1
 
-Test whatever:
+Test 2 integers:
+	>>> add_integer(55, 500)
+	555
 
-    >>> add_integer(24, 846)
-    870
+Test 2 long ints:
+	>>> add_integer(11111111, 22222222)
+	33333333
 
-Test whatever:
+Test positive + negative ints
+	>>> add_integer(167, -7)
+	160
 
-    >>> add_integer(24.897983479, 846.9827495)
-    870
+Test negative, positive ints:
+	>>> add_integer(-100, 200)
+	100
 
-Tes passing a string as argument:
+Test integer and float:
+	>>> add_integer(100, 3.907)
+	103
 
-    >>> add_integer("Holberton", 5)
-    Traceback (most recent call last):
+Add infinity:
+	>>> add_integer(float('inf'), float(-inf))
+	Traceback (most recent call last):
+	...
+	OverflowError: cannot convert float infinity to integer.
+
+Add NaN:
+	>>> add_integer(1, float('Nan')
+	Traceback (most recent call last):
+	...
+	ValueError: cannot convert float NaN to integer.
+
+Test first arg invalid:
+	>>> add_integer("rad", 0)
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer.
+
+Test first arg invalid:
+        >>> add_integer(0, "rad")
+        Traceback (most recent call last):
         ...
-    TypeError: a must be an integer
+        TypeError: b must be an integer.
 
-Tes passing a string as argument:
-
-    >>> add_integer(35673, "Holberton")
-    Traceback (most recent call last):
+Test both args invalid:
+        >>> add_integer("rad", {})
+        Traceback (most recent call last):
         ...
-    TypeError: b must be an integer
+        TypeError: a must be an integer.
 
-Tes passing a string as argument:
-
-    >>> add_integer(None, 5)
-    Traceback (most recent call last):
+Test 2 strings:
+        >>> add_integer("UNIX", "TOO COOL"
+        Traceback (most recent call last):
         ...
-    TypeError: a must be an integer
+        TypeError: a must be an integer.
 
-Tes passing a string as argument:
-
-    >>> add_integer(74, float('nan'))
-    Traceback (most recent call last):
+Test float overflow:
+	>>> add_integer(float('inf'), 0)
+	Traceback (most recent call last):
         ...
-    ValueError: cannot convert float NaN to integer
-
-Tes passing a string as argument:
-
-    >>> add_integer(float('inf'), 5)
-    Traceback (most recent call last):
-        ...
-    OverflowError: cannot convert float infinity to integer
+	OverflowError: cannot convert float infinity to int.
