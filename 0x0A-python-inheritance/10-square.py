@@ -1,50 +1,20 @@
 #!/usr/bin/python3
-"""Module 10-base_geometry"""
+"""
+Module that holds square class
+"""
+Rectangle = __import__('9-rectangle').Rectangle
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
-class BaseGeometry:
-    """Class BaseGeometry"""
-    def area(self):
-        """Area method"""
-        raise Exception('area() is not implemented')
-
-    def integer_validator(self, name, value):
-        """integer_validator function"""
-        if type(value) != int:
-            raise TypeError(name + ' must be an integer')
-        if value <= 0:
-            raise ValueError(name + ' must be greater than 0')
-
-
-class Rectangle(BaseGeometry):
-    """Class BaseGeometry"""
-
-    def __init__(self, width, height):
-        """Init"""
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-        self.__width = width
-        self.__height = height
-
-    def area(self):
-        """Find the Area"""
-        return self.__width * self.__height
-
-    def __str__(self):
-        """Overcharge __str__"""
-        string = "[Rectangle] " + str(self.__width) + "/" + str(self.__height)
-        return string
-
-
-class Square(Rectangle):
-    """Class Square"""
+class Square(Rectangle, BaseGeometry):
+    """Class for Square"""
 
     def __init__(self, size):
-        """Init Square"""
-        self.integer_validator("size", size)
-        self.__size = size
+        """Initiate a new square with attributes"""
+        BaseGeometry.integer_validator(self, name="size", value=size)
         super().__init__(size, size)
+        self.__size = size
 
     def area(self):
-        """Find the area"""
-        return self.__size ** 2
+        """Return the area of a square"""
+        return(self.__size * self.__size)
