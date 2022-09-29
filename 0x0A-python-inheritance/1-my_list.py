@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""Module 1"""
+"""
+This module contains the MyList class
+"""
 
 
 class MyList(list):
-    """Class MyList"""
+    """The Mylist class inherits from list and adds functionality"""
+
     def print_sorted(self):
-        """Print a sorted list"""
-        tmp = self.copy()
-        print(sorted(tmp))
+        print(sorted(self))
