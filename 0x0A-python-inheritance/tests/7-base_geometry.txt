@@ -1,0 +1,107 @@
+The ``7-base_geometry`` module
+======================
+
+Using ``integer_validate``
+-------------------
+
+A function that validates the input of the integer_validator function
+
+First import ``integer_validate`` from the ``7-base_geometry`` module:
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+* area() method should return correct message
+>>> bg.integer_validator("name", 5)
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+* check integer_validator with no arguments
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+* check integer_validator with no age argument
+>>> bg.integer_validator('age')
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+* check integer_validator
+>>> bg.integer_validator('age', 1)
+
+* check integer_validator
+>>> bg.integer_validator('age', 0)
+Traceback (most recent call last):
+    ...
+ValueError: age must be greater than 0
+
+* value should be an integer
+>>> bg.integer_validator("name", -87)
+Traceback (most recent call last):
+    ...
+ValueError: name must be greater than 0
+
+* value should not except sets
+>>> bg.integer_validator("name", {3, 4})
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be a string
+>>> bg.integer_validator("name", "name")
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be booleen
+>>> bg.integer_validator("name", True)
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be None
+>>> bg.integer_validator("name", None)
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be NaN
+>>> bg.integer_validator("name", float('nan'))
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be inf
+>>> bg.integer_validator("name", float('inf'))
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be -inf
+>>> bg.integer_validator("name", float('-inf'))
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+* value should not be list
+>>> bg.integer_validator("name", [1, 2])
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+
+* value should not be dict
+>>> bg.integer_validator("name", {'key': 'value'})
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
+
+
+* value should not be tuple
+>>> bg.integer_validator("name", (1, 2))
+Traceback (most recent call last):
+    ...
+TypeError: name must be an integer
